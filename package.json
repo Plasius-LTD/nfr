@@ -14,6 +14,7 @@
   "author": "Plasius LTD",
   "type": "module",
   "sideEffects": false,
+  "private": false,
   "files": [
     "dist"
   ],

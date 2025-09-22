@@ -10,7 +10,8 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 - **Added**
 
-  - (placeholder)
+  - Initial Commit
+  - CD pipeline added major, minor and patch flags for the pipeline
 
 - **Changed**
 
