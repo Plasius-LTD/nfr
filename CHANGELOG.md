@@ -9,6 +9,20 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 ## [Unreleased]
 
 - **Added**
+  - (placeholder)
+
+- **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [1.0.0] - 2025-09-22
+
+- **Added**
 
   - Initial Commit
   - CD pipeline added major, minor and patch flags for the pipeline
@@ -37,3 +51,6 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 > Tip: Use Conventional Commits in PR titles/bodies to make changelog updates easier.
 
 ---
+
+
+[1.0.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.0
