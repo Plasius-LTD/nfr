@@ -12,7 +12,7 @@
 
 ## Overview
 
-`@plasius/nfr` provides a scoped state management solution for React applications. It allows developers to create isolated, testable, and composable stores without introducing heavy dependencies.
+`@plasius/nfr` provides Non-Functional Requirement assistance, exposing platform agnostic Analytics, Performance Tracking and more.
 
 ---
 
