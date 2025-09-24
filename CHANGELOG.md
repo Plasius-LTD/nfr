@@ -9,6 +9,20 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 ## [Unreleased]
 
 - **Added**
+  - (placeholder)
+
+- **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [1.0.1] - 2025-09-24
+
+- **Added**
   - Improved code coverage
 
 - **Changed**
@@ -52,5 +66,6 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 ---
 
-[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.1...HEAD
 [1.0.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.0
+[1.0.1]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.1
