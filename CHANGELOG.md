@@ -12,6 +12,20 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [1.0.2] - 2025-10-16
+
+- **Added**
+  - (placeholder)
+
+- **Changed**
   - track and page console log events now use the name of the event rather than pre-pend generic names.
 
 - **Fixed**
@@ -46,6 +60,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 ---
 
-[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.2...HEAD
 [1.0.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.0
 [1.0.1]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.1
+[1.0.2]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.2
