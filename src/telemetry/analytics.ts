@@ -32,8 +32,8 @@ const isProd =
 
 // Example sinks
 const consoleSink: AnalyticsSink = {
-  track: (event) => console.info("[analytics:track]", event),
-  page: (name, props) => console.info("[analytics:page]", { name, props }),
+  track: (event) => console.info(event.name, event.props),
+  page: (name, props) => console.info(name, props),
 };
 
 // Replace with your real one later:

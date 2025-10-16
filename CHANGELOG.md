@@ -12,10 +12,10 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Changed**
-  - (placeholder)
+  - track and page console log events now use the name of the event rather than pre-pend generic names.
 
 - **Fixed**
-  - (placeholder)
+  - CD.yml no longer double commits upon release
 
 - **Security**
   - (placeholder)
@@ -25,32 +25,12 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 - **Added**
   - Improved code coverage
 
-- **Changed**
-  - (placeholder)
-
-- **Fixed**
-  - (placeholder)
-
-- **Security**
-  - (placeholder)
-
 ## [1.0.0] - 2025-09-22
 
 - **Added**
 
   - Initial Commit
   - CD pipeline added major, minor and patch flags for the pipeline
-
-- **Changed**
-
-  - (placeholder)
-
-- **Fixed**
-
-  - (placeholder)
-
-- **Security**
-  - (placeholder)
 
 ---
 
