@@ -186,7 +186,7 @@ function observeLongTasks(track: PerfTracker): () => void {
 // ---------------------------------------------------------------------------
 function observeResources(track: PerfTracker, sampleRate: number, filter?: (e: PerformanceResourceTiming) => boolean): () => void {
   if (!("PerformanceObserver" in window)) return () => {};
-  const shouldSample = (Math.max(0, Math.min(1, sampleRate)) || 0.25);
+  const shouldSample = Math.min(1, Math.max(0, sampleRate ?? 0.25));
   const take = () => Math.random() < shouldSample;
   let obs: PerformanceObserver | undefined;
 
@@ -228,13 +228,17 @@ function wireVisibility(track: PerfTracker): () => void {
   const onHidden = (type: string) => () => {
     track({ category: "visibility", name: type, ts: now(), url: pageURL() });
   };
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") onHidden("hidden")();
-  });
-  window.addEventListener("pagehide", onHidden("pagehide"));
+  const handleHidden = onHidden("hidden");
+  const handleVisibilityChange = () => {
+    if (document.visibilityState === "hidden") handleHidden();
+  };
+  const handlePagehide = onHidden("pagehide");
+
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+  window.addEventListener("pagehide", handlePagehide);
   return () => {
-    document.removeEventListener("visibilitychange", onHidden("hidden"));
-    window.removeEventListener("pagehide", onHidden("pagehide"));
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+    window.removeEventListener("pagehide", handlePagehide);
   };
 }
 
