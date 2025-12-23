@@ -1,14 +1,30 @@
 import React, { createContext, useContext } from "react";
-import { track, page } from "./analytics.js";
+import { track, page, AnalyticsSink } from "./analytics.js";
 
 type AnalyticsContextValue = { track: typeof track; page: typeof page };
 const AnalyticsContext = createContext<AnalyticsContextValue | null>(null);
 
-export const AnalyticsProvider: React.FC<React.PropsWithChildren> = ({
+type AnalyticsProviderProps = React.PropsWithChildren<{
+  value?: AnalyticsContextValue;
+  sink?: AnalyticsSink;
+}>;
+
+export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
   children,
+  value,
+  sink,
 }) => {
+  const resolved: AnalyticsContextValue =
+    value ??
+    (sink
+      ? {
+          track: sink.track,
+          page: sink.page ?? page,
+        }
+      : { track, page });
+
   return (
-    <AnalyticsContext.Provider value={{ track, page }}>
+    <AnalyticsContext.Provider value={resolved}>
       {children}
     </AnalyticsContext.Provider>
   );

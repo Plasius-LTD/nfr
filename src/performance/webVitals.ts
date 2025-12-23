@@ -55,7 +55,10 @@ const now = () => Date.now();
 const pageURL = () => (typeof location !== "undefined" ? location.href : undefined);
 const navType = () => {
   try {
-    const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    const nav =
+      typeof performance !== "undefined"
+        ? (performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined)
+        : undefined;
     return nav?.type ?? (performance as any).navigation?.type;
   } catch {
     return undefined;
@@ -185,7 +188,7 @@ function observeLongTasks(track: PerfTracker): () => void {
 // Resource timings (sampled)
 // ---------------------------------------------------------------------------
 function observeResources(track: PerfTracker, sampleRate: number, filter?: (e: PerformanceResourceTiming) => boolean): () => void {
-  if (!("PerformanceObserver" in window)) return () => {};
+  if (typeof window === "undefined" || !("PerformanceObserver" in window)) return () => {};
   const shouldSample = Math.min(1, Math.max(0, sampleRate ?? 0.25));
   const take = () => Math.random() < shouldSample;
   let obs: PerformanceObserver | undefined;
@@ -228,6 +231,11 @@ function wireVisibility(track: PerfTracker): () => void {
   const onHidden = (type: string) => () => {
     track({ category: "visibility", name: type, ts: now(), url: pageURL() });
   };
+
+  if (typeof document === "undefined" || typeof window === "undefined") {
+    return () => {};
+  }
+
   const handleHidden = onHidden("hidden");
   const handleVisibilityChange = () => {
     if (document.visibilityState === "hidden") handleHidden();
@@ -283,6 +291,11 @@ function snapshotMemory(track: PerfTracker) {
 // Public API
 // ---------------------------------------------------------------------------
 export function initPerformanceTracking(opts: InitOptions): () => void {
+  if (typeof window === "undefined" || typeof document === "undefined" || typeof performance === "undefined") {
+    // SSR / non-DOM environment: no-op to avoid crashes
+    return () => {};
+  }
+
   const {
     track,
     resourceSampleRate = 0.25,

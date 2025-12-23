@@ -29,6 +29,7 @@ const isProd =
   (typeof import.meta !== "undefined" &&
     (import.meta as any).env?.MODE === "production") ||
   process.env.NODE_ENV === "production";
+const hasWindow = typeof window !== "undefined";
 
 // Example sinks
 const consoleSink: AnalyticsSink = {
@@ -57,7 +58,7 @@ const dataLayerSink: AnalyticsSink = {
   },
 };
 
-let activeSink: AnalyticsSink = isProd ? dataLayerSink : consoleSink;
+let activeSink: AnalyticsSink = isProd && hasWindow ? dataLayerSink : consoleSink;
 
 export const setAnalyticsSink = (sink: AnalyticsSink) => {
   activeSink = sink;

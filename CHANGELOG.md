@@ -28,10 +28,13 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 - **Changed**
   - track and page console log events now use the name of the event rather than pre-pend generic names.
   - Resource sampling clamp now honors explicit values (including 0 to disable) and only falls back when unset.
+  - AnalyticsProvider now accepts a custom `value` or `sink` to inject alternative tracking implementations.
 
 - **Fixed**
   - CD.yml no longer double commits upon release
   - Performance visibility listeners are now removed with stable handler references to avoid duplicate tracking.
+  - Performance tracking no-ops in SSR/non-DOM contexts instead of throwing.
+  - Production analytics sink falls back to console when `window` is unavailable (SSR-safe).
 
 - **Security**
   - (placeholder)

@@ -26,34 +26,43 @@ npm install @plasius/nfr
 
 ## Usage Example
 
-### Analytics
+### Analytics & Performance
 
-```ts
+```tsx
+import React from "react";
 import { withInteractionTracking, trackPerf, initPerformanceTracking } from "@plasius/nfr";
 
 // Example: wrap a component with interaction tracking
-const TrackedButton = withInteractionTracking("Button", (props) => {
-  return <button {...props}>Click me</button>;
-});
+const Button = React.forwardRef<HTMLButtonElement, React.ComponentProps<"button">>(
+  (props, ref) => (
+    <button ref={ref} {...props}>
+      Click me
+    </button>
+  )
+);
+const TrackedButton = withInteractionTracking(Button, { origin: "docs" });
 
 // Example: initialize performance tracking
-
 const teardown = initPerformanceTracking({
   track: trackPerf,                    // re-use our analytics pipeline
-  resourceSampleRate: 0.25,            // optional (default 0.25)
+  resourceSampleRate: 0.25,            // optional (default 0.25; set 0 to disable)
   resourceFilter: (r) => r.initiatorType !== "img", // optional
   includeNetworkInfo: true,            // optional (default true)
   includeMemorySnapshot: false,        // optional (default false)
 });
 
-// Example: manual event
+// Example: manual performance event (use a supported PerfCategory)
 trackPerf({
-  category: "custom",
+  category: "resource",
   name: "user-action",
   ts: Date.now(),
   details: { action: "something-happened" },
 });
 ```
+
+> Notes:
+> - Web Vitals are loaded via optional `web-vitals`; if it isn’t installed, those metrics are skipped.
+> - `initPerformanceTracking` safely no-ops in SSR/non-DOM environments.
 
 ---
 
