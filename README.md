@@ -66,6 +66,12 @@ trackPerf({
 
 ---
 
+## Testing
+
+Run `npm test -- --coverage` to execute the Vitest suite (jsdom) and generate coverage reports in `coverage/` (currently ~95% line coverage).
+
+---
+
 ## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.

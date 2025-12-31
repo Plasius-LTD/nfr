@@ -8,6 +8,7 @@ import "@testing-library/jest-dom";
 
 // Import the module and support multiple export styles
 import * as ProviderMod from "../src/telemetry/AnalyticsProvider";
+import { useAnalytics } from "../src/telemetry/AnalyticsProvider";
 
 // Pick the provider component from various possible exports
 const Provider: React.ComponentType<any> =
@@ -36,5 +37,16 @@ describe("AnalyticsProvider", () => {
       </Provider>
     );
     expect(screen.getByTestId("ok")).toBeInTheDocument();
+  });
+
+  it("throws when the hook is used without a provider", () => {
+    const OrphanConsumer = () => {
+      useAnalytics();
+      return null;
+    };
+
+    expect(() => render(<OrphanConsumer />)).toThrow(
+      "useAnalytics must be used within AnalyticsProvider"
+    );
   });
 });
