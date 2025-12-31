@@ -28,9 +28,11 @@ describe("performance/webVitals optional pieces", () => {
     (globalThis as any).PerformanceObserver = originalPerformanceObserver;
     vi.clearAllMocks();
     vi.restoreAllMocks();
+    vi.useRealTimers();
   });
 
   it("emits web-vitals metrics when the optional dependency is available", async () => {
+    vi.useFakeTimers();
     setReadyState("complete");
     const getEntriesByType = vi.fn((type: string) => {
       if (type === "navigation") {
@@ -120,17 +122,17 @@ describe("performance/webVitals optional pieces", () => {
       includeMemorySnapshot: false,
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const events = track.mock.calls.map(([arg]) => arg as any);
-    const webVitalNames = events
-      .filter((e) => e.category === "web-vitals")
-      .map((e) => e.name);
-    expect(webVitalNames).toEqual(
-      expect.arrayContaining(["LCP", "INP", "CLS", "FCP", "TTFB"])
-    );
-    expect(events.some((e) => e.category === "nav-timing")).toBe(true);
-    expect(events.some((e) => e.category === "paint")).toBe(true);
+    await vi.waitFor(() => {
+      const events = track.mock.calls.map(([arg]) => arg as any);
+      const webVitalNames = events
+        .filter((e) => e.category === "web-vitals")
+        .map((e) => e.name);
+      expect(webVitalNames).toEqual(
+        expect.arrayContaining(["LCP", "INP", "CLS", "FCP", "TTFB"])
+      );
+      expect(events.some((e) => e.category === "nav-timing")).toBe(true);
+      expect(events.some((e) => e.category === "paint")).toBe(true);
+    });
 
     teardown();
   });
@@ -173,5 +175,69 @@ describe("performance/webVitals optional pieces", () => {
     expect(
       track.mock.calls.some(([e]) => (e as any).category === "paint")
     ).toBe(true);
+  });
+
+  it("flushes web-vitals callbacks when timers are advanced", async () => {
+    vi.useFakeTimers();
+    setReadyState("complete");
+    const getEntriesByType = vi.fn((type: string) => {
+      if (type === "navigation") {
+        return [
+          {
+            type: "navigate",
+            responseStart: 1,
+            domainLookupStart: 0,
+            domainLookupEnd: 0,
+            connectStart: 0,
+            connectEnd: 0,
+            secureConnectionStart: 0,
+            requestStart: 0,
+            responseEnd: 1,
+            domInteractive: 2,
+            domComplete: 3,
+            domContentLoadedEventEnd: 2,
+            loadEventStart: 3,
+            loadEventEnd: 4,
+          } as any,
+        ];
+      }
+      return [];
+    });
+    globalThis.performance = { getEntriesByType } as any;
+    (globalThis as any).PerformanceObserver = class {
+      observe() {}
+      disconnect() {}
+    } as any;
+
+    vi.mock(
+      "web-vitals",
+      () => ({
+        onLCP: (cb: any) => setTimeout(() => cb({ value: 1, rating: "good" }), 5),
+        onINP: (cb: any) => setTimeout(() => cb({ value: 2, rating: "good" }), 5),
+        onCLS: (cb: any) => setTimeout(() => cb({ value: 3, rating: "good" }), 5),
+        onFCP: (cb: any) => setTimeout(() => cb({ value: 4, rating: "good" }), 5),
+        onTTFB: (cb: any) => setTimeout(() => cb({ value: 5, rating: "good" }), 5),
+      }),
+      { virtual: true }
+    );
+
+    const track = vi.fn();
+    const { initPerformanceTracking } = await import("../src/performance/webVitals");
+    initPerformanceTracking({
+      track,
+      resourceSampleRate: 0,
+      includeNetworkInfo: false,
+      includeMemorySnapshot: false,
+    });
+
+    await vi.runAllTimersAsync();
+
+    const vitalNames = track.mock.calls
+      .map(([arg]) => arg as any)
+      .filter((e) => e.category === "web-vitals")
+      .map((e) => e.name);
+    expect(vitalNames).toEqual(
+      expect.arrayContaining(["LCP", "INP", "CLS", "FCP", "TTFB"])
+    );
   });
 });

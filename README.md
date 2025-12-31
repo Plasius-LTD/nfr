@@ -68,7 +68,7 @@ trackPerf({
 
 ## Testing
 
-Run `npm test -- --coverage` to execute the Vitest suite (jsdom) and generate coverage reports in `coverage/` (currently ~95% line coverage).
+Run `npm test -- --coverage` to execute the Vitest suite (jsdom) and generate coverage reports in `coverage/` (currently ~95% line coverage). The harness automatically preloads a tiny shim to provide `vm.constants.DONT_CONTEXTIFY` on Node 20 so jsdom can start safely.
 
 ---
 

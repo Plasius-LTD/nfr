@@ -10,11 +10,14 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 - **Added**
   - Additional tests for analytics sinks, `useAnalytics` guard rails, and the optional `web-vitals` import path (coverage now ~95% lines).
+  - Preload shim test to guarantee `vm.constants.DONT_CONTEXTIFY` exists before jsdom starts, plus behavior tests for the shim.
 
 - **Changed**
   - Resource sampling clamp now honors explicit values (including 0 to disable) and only falls back when unset.
   - AnalyticsProvider now accepts a custom `value` or `sink` to inject alternative tracking implementations.
-  - Vitest config now patches `vm.constants` and runs in forked workers so jsdom can start reliably on Node 20.
+  - Vitest now injects the vm constants shim via `NODE_OPTIONS` (global setup) instead of mutating `vm.constants` at config time, keeping the harness more predictable.
+  - Removed direct patching of jsdom’s bundled `Window.js` in `node_modules`; the preload shim now handles missing VM constants safely.
+  - Web-vitals import tests use deterministic waits (fake timers + `waitFor`) to avoid timing flakiness.
 
 - **Fixed**
   - Performance visibility listeners are now removed with stable handler references to avoid duplicate tracking.

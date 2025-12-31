@@ -1,10 +1,4 @@
-import vm from "node:vm";
 import { defineConfig } from "vitest/config";
-
-// Some Node builds omit vm.constants; jsdom expects DONT_CONTEXTIFY to exist.
-if (!vm.constants || !vm.constants.DONT_CONTEXTIFY) {
-  vm.constants = { ...(vm.constants || {}), DONT_CONTEXTIFY: Symbol.for("dont-contextify") };
-}
 
 export default defineConfig({
   test: {
@@ -12,6 +6,7 @@ export default defineConfig({
     globals: true,
     include: ["tests/**/*.test.{ts,tsx}"],
     pool: "forks",
+    globalSetup: "./tests/setup/global-setup.ts",
     setupFiles: ["./tests/setup/vm-constants.ts"],
     environmentOptions: {
       jsdom: {
