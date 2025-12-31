@@ -1,7 +1,7 @@
 # @plasius/nfr
 
 [![npm version](https://img.shields.io/npm/v/@plasius/nfr.svg)](https://www.npmjs.com/package/@plasius/nfr)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Plasius-LTD/nfr/ci.yml?branch=main&label=build&style=flat)](https://github.com/plasius/nfr/actions/workflows/ci.yml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Plasius-LTD/nfr/ci.yml?branch=main&label=build&style=flat)](https://github.com/Plasius-LTD/nfr/actions/workflows/ci.yml)
 [![coverage](https://img.shields.io/codecov/c/github/Plasius-LTD/nfr)](https://codecov.io/gh/Plasius-LTD/nfr)
 [![License](https://img.shields.io/github/license/Plasius-LTD/nfr)](./LICENSE)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-yes-blue.svg)](./CODE_OF_CONDUCT.md)
