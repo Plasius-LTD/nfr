@@ -1,6 +1,6 @@
 {
   "name": "@plasius/nfr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a small, typed Non-Functional-Requirement (NFR) framework that cleanly adapts to different cloud vendors (GA4, PostHog, Azure Application Insights, etc.) and different concerns (analytics/events, metrics, tracing, logs, feature flags, performance).",
   "homepage": "https://github.com/Plasius-LTD/nfr#readme",
   "bugs": {
