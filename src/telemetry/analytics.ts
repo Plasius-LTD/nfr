@@ -1,5 +1,7 @@
 import { PerfEvent } from "../performance/index.js";
 
+declare const __IMPORT_META_ENV__: { MODE?: string } | undefined;
+
 export type AnalyticsEvent = {
   name: string;
   props?: Record<string, unknown>;
@@ -25,10 +27,11 @@ export const trackPerf = (e: PerfEvent) => {
   });
 };
 
+const metaEnv =
+  typeof __IMPORT_META_ENV__ !== "undefined" ? __IMPORT_META_ENV__ : undefined;
 const isProd =
-  (typeof import.meta !== "undefined" &&
-    (import.meta as any).env?.MODE === "production") ||
-  process.env.NODE_ENV === "production";
+  metaEnv?.MODE === "production" ||
+  (typeof process !== "undefined" && process.env?.NODE_ENV === "production");
 const hasWindow = typeof window !== "undefined";
 
 // Example sinks

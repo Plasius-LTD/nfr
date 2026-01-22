@@ -18,11 +18,13 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - Vitest now injects the vm constants shim via `NODE_OPTIONS` (global setup) instead of mutating `vm.constants` at config time, keeping the harness more predictable.
   - Removed direct patching of jsdom’s bundled `Window.js` in `node_modules`; the preload shim now handles missing VM constants safely.
   - Web-vitals import tests use deterministic waits (fake timers + `waitFor`) to avoid timing flakiness.
+  - Exposed `main`, `module`, and `types` metadata for dual ESM/CJS builds.
 
 - **Fixed**
   - Performance visibility listeners are now removed with stable handler references to avoid duplicate tracking.
   - Performance tracking no-ops in SSR/non-DOM contexts instead of throwing.
   - Production analytics sink falls back to console when `window` is unavailable (SSR-safe).
+  - CJS builds no longer warn on `import.meta` usage.
 
 - **Security**
   - (placeholder)
