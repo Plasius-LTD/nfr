@@ -38,6 +38,7 @@ export type PerfEvent = {
 };
 
 export type PerfTracker = (event: PerfEvent) => void;
+export type PerfTeardown = (() => void) & { ready: Promise<void> };
 
 export type InitOptions = {
   track: PerfTracker;
@@ -290,10 +291,11 @@ function snapshotMemory(track: PerfTracker) {
 // ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
-export function initPerformanceTracking(opts: InitOptions): () => void {
+export function initPerformanceTracking(opts: InitOptions): PerfTeardown {
   if (typeof window === "undefined" || typeof document === "undefined" || typeof performance === "undefined") {
     // SSR / non-DOM environment: no-op to avoid crashes
-    return () => {};
+    const noop = () => {};
+    return Object.assign(noop, { ready: Promise.resolve() });
   }
 
   const {
@@ -305,7 +307,7 @@ export function initPerformanceTracking(opts: InitOptions): () => void {
   } = opts;
 
   // Web Vitals (async)
-  void wireWebVitals(track);
+  const webVitalsReady = wireWebVitals(track);
 
   // Navigation & paints (buffered entries are available after DOM ready)
   if (document.readyState === "complete") {
@@ -328,11 +330,12 @@ export function initPerformanceTracking(opts: InitOptions): () => void {
   if (includeMemorySnapshot) snapshotMemory(track);
 
   // Teardown
-  return () => {
+  const teardown = () => {
     offLong();
     offRes();
     offVis();
   };
+  return Object.assign(teardown, { ready: webVitalsReady });
 }
 
 export default {

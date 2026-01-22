@@ -19,6 +19,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - Removed direct patching of jsdom’s bundled `Window.js` in `node_modules`; the preload shim now handles missing VM constants safely.
   - Web-vitals import tests use deterministic waits (fake timers + `waitFor`) to avoid timing flakiness.
   - Exposed `main`, `module`, and `types` metadata for dual ESM/CJS builds.
+  - `initPerformanceTracking` now exposes a `ready` promise for async web-vitals wiring.
 
 - **Fixed**
   - Performance visibility listeners are now removed with stable handler references to avoid duplicate tracking.

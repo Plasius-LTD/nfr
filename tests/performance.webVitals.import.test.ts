@@ -223,13 +223,14 @@ describe("performance/webVitals optional pieces", () => {
 
     const track = vi.fn();
     const { initPerformanceTracking } = await import("../src/performance/webVitals");
-    initPerformanceTracking({
+    const teardown = initPerformanceTracking({
       track,
       resourceSampleRate: 0,
       includeNetworkInfo: false,
       includeMemorySnapshot: false,
     });
 
+    await teardown.ready;
     await vi.runAllTimersAsync();
 
     const vitalNames = track.mock.calls
