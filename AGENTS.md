@@ -28,6 +28,7 @@ This repo provides `@plasius/nfr`, a typed NFR framework for analytics, telemetr
 - Use Conventional Commits (see `CONTRIBUTING.md`).
 - Update `README.md` and `CHANGELOG.md` for user-facing changes.
 - Avoid editing `dist/` or `coverage/` by hand.
+- Architectural changes require ADRs in `docs/adrs/` (or the repo ADRs folder); ensure a package-function ADR exists.
 
 ## AI guidance
 - After any change, run relevant BDD/TDD tests when they exist; mention if skipped.
