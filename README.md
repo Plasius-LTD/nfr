@@ -24,6 +24,17 @@ npm install @plasius/nfr
 
 ---
 
+## Demo
+
+```bash
+npm run build
+node demo/example.mjs
+```
+
+See `demo/README.md` for the local sanity-check scaffold.
+
+---
+
 ## Usage Example
 
 ### Analytics & Performance
