@@ -12,8 +12,6 @@
  *  - Memory snapshot (JS heap) when available (Chromium only)
  */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export type VitalName = "LCP" | "INP" | "CLS" | "FCP" | "TTFB";
 export type PerfCategory =
   | "web-vitals"
@@ -71,7 +69,7 @@ const navType = () => {
 // ---------------------------------------------------------------------------
 async function wireWebVitals(track: PerfTracker) {
   try {
-    // @ts-ignore - optional dependency; we ignore TS resolution and rely on runtime try/catch
+    // @ts-expect-error - optional dependency; we ignore TS resolution and rely on runtime try/catch
     const mod: any = await import(/* webpackChunkName: "web-vitals" */ "web-vitals");
     const handlers: [string, (onReport: any, opts?: any) => void, any?][] = [
       ["LCP", mod.onLCP],
@@ -181,7 +179,7 @@ function observeLongTasks(track: PerfTracker): () => void {
     // ignore
   }
   return () => {
-    try { obs?.disconnect(); } catch {}
+    try { obs?.disconnect(); } catch { /* ignore disconnect errors */ }
   };
 }
 
@@ -222,7 +220,7 @@ function observeResources(track: PerfTracker, sampleRate: number, filter?: (e: P
   } catch {
     // ignore
   }
-  return () => { try { obs?.disconnect(); } catch {} };
+  return () => { try { obs?.disconnect(); } catch { /* ignore disconnect errors */ } };
 }
 
 // ---------------------------------------------------------------------------

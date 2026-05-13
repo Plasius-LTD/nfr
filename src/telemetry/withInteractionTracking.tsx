@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+
 import React from "react";
 import { track } from "./analytics.js";
 

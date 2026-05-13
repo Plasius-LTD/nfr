@@ -63,7 +63,9 @@ describe("analytics.trackPerf", () => {
     if (restore) {
       try {
         restore();
-      } catch {}
+      } catch {
+        // ignore teardown errors from previous sink mocks
+      }
       restore = undefined;
     }
   });
