@@ -9,13 +9,13 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 ## [Unreleased]
 
 - **Added**
-  - (placeholder)
+  - Explicit `npm run typecheck` validation for the package and CI/CD workflows.
 
 - **Changed**
-  - (placeholder)
+  - TypeScript validation now runs through a canonical no-emit compiler gate reused by CI/CD.
 
 - **Fixed**
-  - (placeholder)
+  - `AnalyticsProvider` now adapts `sink.track` to the public `track(name, props)` helper contract.
 
 - **Security**
   - (placeholder)

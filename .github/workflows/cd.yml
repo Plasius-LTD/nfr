@@ -153,6 +153,9 @@ jobs:
       - name: Install deps (CI)
         run: npm ci
 
+      - name: Typecheck
+        run: npm run typecheck
+
       - name: Test (coverage)
         run: npm run test -- --coverage
         

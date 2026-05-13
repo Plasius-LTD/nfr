@@ -33,6 +33,14 @@ node demo/example.mjs
 
 See `demo/README.md` for the local sanity-check scaffold.
 
+## Validation
+
+```bash
+npm run lint
+npm run typecheck
+npm test
+```
+
 ---
 
 ## Usage Example
