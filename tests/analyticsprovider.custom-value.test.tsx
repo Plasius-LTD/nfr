@@ -26,4 +26,30 @@ describe("AnalyticsProvider value passthrough", () => {
     expect(ctx.track).toBeDefined();
     expect(ctx.track).toBe(custom.track);
   });
+
+  it("adapts a sink into the public track/page helpers", () => {
+    const sinkTrack = vi.fn();
+    const sinkPage = vi.fn();
+    const onValue = vi.fn();
+
+    render(
+      <AnalyticsProvider sink={{ track: sinkTrack, page: sinkPage }}>
+        <Consumer onValue={onValue} />
+      </AnalyticsProvider>
+    );
+
+    const ctx = onValue.mock.calls[0][0];
+    ctx.track("profile.save", { source: "test" });
+    ctx.page("settings", { section: "privacy" });
+
+    expect(sinkTrack).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: "profile.save",
+        props: { source: "test" },
+      })
+    );
+    expect(sinkPage).toHaveBeenCalledWith("settings", {
+      section: "privacy",
+    });
+  });
 });

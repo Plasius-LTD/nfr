@@ -31,6 +31,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit --pretty",
     "test:watch": "vitest",
     "lint": "eslint .",
     "prepare": "npm run build",

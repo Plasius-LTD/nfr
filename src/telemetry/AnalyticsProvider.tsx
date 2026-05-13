@@ -18,7 +18,12 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     value ??
     (sink
       ? {
-          track: sink.track,
+          track: (name, props) =>
+            sink.track({
+              name,
+              props,
+              ts: Date.now(),
+            }),
           page: sink.page ?? page,
         }
       : { track, page });
