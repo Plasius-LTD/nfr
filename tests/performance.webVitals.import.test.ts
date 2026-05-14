@@ -20,7 +20,7 @@ describe("performance/webVitals optional pieces", () => {
 
   afterEach(() => {
     vi.resetModules();
-    vi.unmock("web-vitals");
+    vi.doUnmock("web-vitals");
     if (originalReadyState) {
       Object.defineProperty(document, "readyState", originalReadyState);
     }
@@ -76,7 +76,7 @@ describe("performance/webVitals optional pieces", () => {
       disconnect() {}
     } as any;
 
-    vi.mock(
+    vi.doMock(
       "web-vitals",
       () => ({
         onLCP: (cb: any) =>
@@ -209,7 +209,7 @@ describe("performance/webVitals optional pieces", () => {
       disconnect() {}
     } as any;
 
-    vi.mock(
+    vi.doMock(
       "web-vitals",
       () => ({
         onLCP: (cb: any) => setTimeout(() => cb({ value: 1, rating: "good" }), 5),

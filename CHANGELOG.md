@@ -16,6 +16,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 - **Fixed**
   - `AnalyticsProvider` now adapts `sink.track` to the public `track(name, props)` helper contract.
+  - `performance.webVitals` import coverage now uses Vitest's non-hoisted module mock APIs so the suite no longer emits future-breaking `web-vitals` hoisting warnings.
 
 - **Security**
   - (placeholder)
