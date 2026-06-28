@@ -12,6 +12,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Changed**
+  - Refreshed the optional `web-vitals` peer dependency range to the latest released major-compatible version.
   - (placeholder)
 
 - **Fixed**
