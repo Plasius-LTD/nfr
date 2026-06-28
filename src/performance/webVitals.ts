@@ -69,7 +69,6 @@ const navType = () => {
 // ---------------------------------------------------------------------------
 async function wireWebVitals(track: PerfTracker) {
   try {
-    // @ts-expect-error - optional dependency; we ignore TS resolution and rely on runtime try/catch
     const mod: any = await import(/* webpackChunkName: "web-vitals" */ "web-vitals");
     const handlers: [string, (onReport: any, opts?: any) => void, any?][] = [
       ["LCP", mod.onLCP],
