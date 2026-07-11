@@ -12,6 +12,20 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [1.0.13] - 2026-07-11
+
+- **Added**
+  - (placeholder)
+
+- **Changed**
   - Refreshed development and optional peer dependency baselines to the latest stable published versions, including Node.js 26 type definitions.
   - Assessed TypeScript 7, but retained TypeScript 6 because the latest stable `@typescript-eslint/parser` and plugin require TypeScript below 6.1.0.
 
@@ -171,7 +185,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 ---
 
-[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.12...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.13...HEAD
 [1.0.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.0
 [1.0.1]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.1
 [1.0.2]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.2
@@ -197,3 +211,4 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 [1.0.8]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.8
 [1.0.11]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.11
 [1.0.12]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.12
+[1.0.13]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.13
