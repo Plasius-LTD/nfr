@@ -12,7 +12,8 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Changed**
-  - (placeholder)
+  - Refreshed development and optional peer dependency baselines to the latest stable published versions, including Node.js 26 type definitions.
+  - Assessed TypeScript 7, but retained TypeScript 6 because the latest stable `@typescript-eslint/parser` and plugin require TypeScript below 6.1.0.
 
 - **Fixed**
   - (placeholder)
