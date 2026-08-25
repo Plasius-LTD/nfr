@@ -12,7 +12,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Changed**
-  - (placeholder)
+  - Refreshed the npm lockfile to the latest compatible dependency releases.
 
 - **Fixed**
   - (placeholder)
