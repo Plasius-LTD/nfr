@@ -3,13 +3,15 @@ name: CI
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 permissions:
   actions: read
   contents: read
 
 jobs:
   build-test:
-    runs-on: [self-hosted, Linux, X64]
+    runs-on: ${{ fromJSON(github.event_name == 'pull_request' && '["ubuntu-latest"]' || vars.CI_RUNNER_LABELS || '["self-hosted","Linux","X64"]') }}
     steps:
       - uses: actions/checkout@v4
 
@@ -91,7 +93,7 @@ jobs:
   public_artifact_integrity:
     name: Public artifact integrity
     if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
-    runs-on: [self-hosted, Linux, X64]
+    runs-on: ${{ fromJSON(github.event_name == 'pull_request' && '["ubuntu-latest"]' || vars.CI_RUNNER_LABELS || '["self-hosted","Linux","X64"]') }}
     timeout-minutes: 10
     permissions:
       contents: read
