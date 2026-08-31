@@ -12,6 +12,20 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [1.0.15] - 2026-08-31
+
+- **Added**
+  - (placeholder)
+
+- **Changed**
   - Bound npm publication to the exact prepared `main` commit after successful push-triggered CI.
   - (placeholder)
 
@@ -204,7 +218,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 ---
 
-[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.14...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.15...HEAD
 [1.0.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.0
 [1.0.1]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.1
 [1.0.2]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.2
@@ -232,3 +246,4 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 [1.0.12]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.12
 [1.0.13]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.13
 [1.0.14]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.14
+[1.0.15]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.15
