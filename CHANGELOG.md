@@ -16,10 +16,26 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Fixed**
+  - Added exact-commit CI dispatch and disabled package-manager cache finalization in both hosted validation jobs.
   - (placeholder)
 
 - **Security**
-  - Removed the npm write-token path, added a fail-closed npm 11.5.1-or-newer OIDC guard, and denied fork PR code access to self-hosted CI.
+  - Removed the npm write-token path, added a fail-closed npm 11.5.1-or-newer OIDC guard, and denied fork PR code access to reviewed CI.
+  - Moved reviewed CI to explicit GitHub-hosted runners while retaining the same-repository pull-request guard.
+  - (placeholder)
+
+## [1.0.14] - 2026-08-30
+
+- **Added**
+  - (placeholder)
+
+- **Changed**
+  - Refreshed the npm lockfile to the latest compatible dependency releases.
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
   - Added fail-closed source and npm-package admission for the administrative contributor registry and pinned the CI/CD runtime to Node.js 24.18.0 LTS.
   - (placeholder)
 
@@ -188,7 +204,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 ---
 
-[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.13...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.0.14...HEAD
 [1.0.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.0
 [1.0.1]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.1
 [1.0.2]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.2
@@ -215,3 +231,4 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 [1.0.11]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.11
 [1.0.12]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.12
 [1.0.13]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.13
+[1.0.14]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.14
