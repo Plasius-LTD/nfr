@@ -24,6 +24,54 @@ npm install @plasius/nfr
 
 ---
 
+## Privacy-safe events-service integration
+
+Use `installUsefulMetricCollectors` with an application-owned
+`@plasius/analytics` semantic client. Compose
+`USEFUL_METRIC_EVENT_DEFINITIONS` into its catalogue and evaluate the stored
+remote flag before installing. The collector uses the released analytics 1.3
+projection; it does not create a sender, endpoint, identity or persistent state.
+
+```ts
+import { installUsefulMetricCollectors } from "@plasius/nfr";
+
+const collectors = installUsefulMetricCollectors({
+  enabled: runtime.enabled, // stored platform.analytics.semantic-journeys.enabled
+  onEvent: (event) => semanticClient.track(event),
+  // catalogue: hostCatalogue, // optional explicitly annotated interactions
+});
+// On rollback/unmount: stop producers before destroying the host client.
+collectors.dispose();
+semanticClient.destroy();
+```
+
+The host must provide the same catalogue-approved metric definitions to the
+service and verify processing, not merely HTTP acceptance. Lazy-load this
+integration at the host's telemetry boundary. Do not install the optional
+interaction observer when the host already owns one.
+
+Captured signals are one bucketed navigation load duration, fixed runtime /
+resource / unhandled-rejection counts, and anonymous activity periods. A visible
+period ends on hide/pagehide or 30 minutes without activity. A later visible
+interaction begins a new period; hidden time is excluded. These are sampled
+activity counts, not unique users or cross-tab sessions. Reloads, tabs and lost
+final observations affect totals. No Web Vitals SDK, resource URL enumeration,
+error text, stack, input value, DOM label or identity is forwarded by this API.
+
+At most 120 observations per minute reach the host callback. Excess observations
+and sink failures increment only the local `snapshot().dropped` diagnostic.
+`snapshot().emitted` counts successful callback handoffs, **not network delivery**.
+No per-frame sampling or network work occurs in this collector. Disabled/SSR
+installs nothing; disposal removes listeners and timers without emitting a final
+rollback event. Use the shared client's batching/retry/backpressure and destroy
+it on rollback to discard queued observations.
+
+Legacy `track`, `page`, `trackPerf`, `withInteractionTracking` and
+`initPerformanceTracking` remain compatible but are **not** a privacy-safe
+forwarding contract: they can include free-form props, DOM labels or URLs. Do not
+wire their raw console/dataLayer payloads into the events service. Migrate each
+producer to fixed semantic events or this collector and test its host wiring.
+
 ## Demo
 
 ```bash

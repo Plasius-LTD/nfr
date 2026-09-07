@@ -9,7 +9,10 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 ## [Unreleased]
 
 - **Added**
-  - (placeholder)
+  - Explicit host-owned, default-disabled useful metric collectors using the
+    released `@plasius/analytics` privacy projection, with anonymous activity
+    periods, bucketed load times, fixed errors, optional catalogue-only
+    interactions, bounded observation rates and complete teardown.
 
 - **Changed**
   - (placeholder)
