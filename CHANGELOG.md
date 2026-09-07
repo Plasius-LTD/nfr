@@ -15,7 +15,9 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Fixed**
-  - (placeholder)
+  - Useful metric collectors now use the released standalone analytics metric
+    entry, preserving lazy host bundle boundaries without changing collection,
+    privacy rules, transport ownership or default-disabled rollout behavior.
 
 - **Security**
   - (placeholder)
