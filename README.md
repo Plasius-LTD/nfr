@@ -30,6 +30,9 @@ Use `installUsefulMetricCollectors` with an application-owned
 `@plasius/analytics` semantic client. Compose
 `USEFUL_METRIC_EVENT_DEFINITIONS` into its catalogue and evaluate the stored
 remote flag before installing. The collector uses the released analytics 1.3
+standalone metric entry (minimum 1.3.1), keeping optional metric projection out
+of legacy-only root analytics imports. Hosts must still verify their build's
+lazy-loading and initial-load budgets. It uses the same fixed
 projection; it does not create a sender, endpoint, identity or persistent state.
 
 ```ts

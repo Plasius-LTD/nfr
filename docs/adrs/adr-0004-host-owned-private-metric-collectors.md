@@ -20,6 +20,12 @@ processing endpoint. The package owns lifecycle-safe DOM collection, not an
 independent HTTP client or queue. Legacy APIs remain compatible and documented
 as outside this privacy-safe path.
 
+Task #38 moves metric projection imports to the released
+`@plasius/analytics/metrics` entry (minimum 1.3.1), while reusing the existing
+root semantic observer. This prevents the collector from making unused root
+metric exports live in a legacy-only host graph. It does not change any metric
+or privacy behavior. Verify actual host bundle budgets after adoption.
+
 Collect one navigation load bucket, fixed error categories and anonymous visible
 activity periods with a 30-minute idle boundary. Capture no error message/reason,
 navigation/resource URL, DOM text, typed value, raw input sample or identifier.

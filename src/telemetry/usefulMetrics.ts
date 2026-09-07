@@ -1,9 +1,9 @@
 import {
   observeSemanticJourneyInteractions,
-  projectUsefulMetric,
   type SemanticJourneyCatalog,
   type SemanticJourneyEventInput,
 } from "@plasius/analytics";
+import { projectUsefulMetric } from "@plasius/analytics/metrics";
 
 /** Host-owned metric capture; the host supplies its stored remote-flag decision. */
 export interface UsefulMetricCollectorOptions {
