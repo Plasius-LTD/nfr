@@ -15,6 +15,20 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
   - (placeholder)
 
 - **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [1.1.1] - 2026-09-07
+
+- **Added**
+  - (placeholder)
+
+- **Changed**
+  - (placeholder)
+
+- **Fixed**
   - Useful metric collectors now use the released standalone analytics metric
     entry, preserving lazy host bundle boundaries without changing collection,
     privacy rules, transport ownership or default-disabled rollout behavior.
@@ -237,7 +251,7 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 
 ---
 
-[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/nfr/compare/v1.1.1...HEAD
 [1.0.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.0
 [1.0.1]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.1
 [1.0.2]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.2
@@ -267,3 +281,4 @@ The format is based on **[Keep a Changelog](https://keepachangelog.com/en/1.1.0/
 [1.0.14]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.14
 [1.0.15]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.0.15
 [1.1.0]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.1.0
+[1.1.1]: https://github.com/Plasius-LTD/nfr/releases/tag/v1.1.1
