@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { initPerformanceTracking } from "../src/performance/webVitals";
 
 // Mock track function
@@ -25,7 +25,7 @@ class PO {
   }
 }
 
-globalThis.PerformanceObserver = PO as any;
+
 
 // Helper to craft navigation entry
 function makeNav(): PerformanceNavigationTiming {
@@ -90,10 +90,9 @@ const getEntriesByType = vi.fn((type: string) => {
   return [];
 });
 
-globalThis.performance = { getEntriesByType } as any;
 
-// Stub location
-globalThis.location = { href: "https://example.test/" } as any;
+
+
 
 // Utility to set document.readyState (read-only) via defineProperty
 function setReadyState(state: DocumentReadyState) {
@@ -113,11 +112,18 @@ describe("performance/webVitals", () => {
     track.mockClear();
     getEntriesByType.mockClear();
     OBSERVERS.splice(0, OBSERVERS.length);
-    // Reset memory/network on performance/navigator
-    (globalThis as any).navigator = undefined;
+    vi.stubGlobal("PerformanceObserver", PO);
+    vi.stubGlobal("navigator", undefined);
+    vi.spyOn(performance, "getEntriesByType").mockImplementation(getEntriesByType);
     (globalThis.performance as any).memory = undefined;
     // Default readyState to "loading" so the load listener path is exercised unless tests change it
     setReadyState("loading");
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+    delete (globalThis.performance as any).memory;
   });
 
   it("reports navigation and paint timings on load (listener path)", () => {
@@ -210,14 +216,14 @@ describe("performance/webVitals", () => {
 
   it("captures visibility (hidden, pagehide) and snapshots (network, memory)", () => {
     // Provide network + memory
-    (globalThis as any).navigator = {
+    vi.stubGlobal("navigator", {
       connection: {
         effectiveType: "4g",
         downlink: 10,
         rtt: 50,
         saveData: false,
       },
-    };
+    });
     (globalThis.performance as any).memory = {
       jsHeapSizeLimit: 1,
       totalJSHeapSize: 2,

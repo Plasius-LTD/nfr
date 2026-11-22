@@ -70,7 +70,7 @@ describe("performance/webVitals optional pieces", () => {
       }
       return [];
     });
-    globalThis.performance = { getEntriesByType } as any;
+    vi.spyOn(performance, "getEntriesByType").mockImplementation(getEntriesByType);
     (globalThis as any).PerformanceObserver = class {
       observe() {}
       disconnect() {}
@@ -156,7 +156,7 @@ describe("performance/webVitals optional pieces", () => {
       }
       return [];
     });
-    globalThis.performance = { getEntriesByType } as any;
+    vi.spyOn(performance, "getEntriesByType").mockImplementation(getEntriesByType);
     (globalThis as any).PerformanceObserver = class {
       observe() {}
       disconnect() {}
@@ -203,7 +203,7 @@ describe("performance/webVitals optional pieces", () => {
       }
       return [];
     });
-    globalThis.performance = { getEntriesByType } as any;
+    vi.spyOn(performance, "getEntriesByType").mockImplementation(getEntriesByType);
     (globalThis as any).PerformanceObserver = class {
       observe() {}
       disconnect() {}
